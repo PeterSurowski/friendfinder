@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Star Wars - Express</title>
+  <title>Web Dev Friend Finder</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -35,10 +35,9 @@
               </div>
               <h4>How strongly do you agree with the following statements?</h4>
               <p>A 5 means you strongly agree. A 1 means you strongly disagree.</p>
-
               <div class="form-group">
-                <label for="job">I love to party!</label>
-                <select class="form control" id="job">
+                <label for="q1">I love to party!</label>
+                <select class="form control" id="q1">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -46,25 +45,103 @@
                   <option>5</option>
                 </select>
               </div>
-
               <div class="form-group">
-                <label for="age">Age</label>
-                <input type="text" class="form-control" id="age">
+                <label for="q2">I've never seen an episode of Dr. Who.</label>
+                <select class="form control" id="q2">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
               </div>
-
               <div class="form-group">
-                <label for="force-points">Force Points</label>
-                <input type="text" class="form-control" id="force-points">
+                <label for="q3">I have definitely made out with a girl!</label>
+                <select class="form control" id="q3">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
               </div>
-
+              <div class="form-group">
+                <label for="q4">I have a multi-colored jacket with a letter on it from high school.</label>
+                <select class="form control" id="q4">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="q5">My roommates are people other than my mom and dad.</label>
+                <select class="form control" id="q5">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="q6">I have never had a pet named after a Star Wars character.</label>
+                <select class="form control" id="q6">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="q7">Jean Luc Picard is better than James T. Kirk.</label>
+                <select class="form control" id="q7">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="q8">I love Walking Dead and didn't even know about the comic books.</label>
+                <select class="form control" id="q8">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="q9">I do not have a VHS copy of Wayne's World.</label>
+                <select class="form control" id="q9">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="q10">Let's go surfing!</label>
+                <select class="form control" id="q10">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
             </form>
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span> Add to the Force</button>
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span> Send</button>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -73,17 +150,25 @@
     // Question: What does this code do?
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
-      var newCharacter = {
-        name: $("#name").val().trim(),
-        role: $("#role").val().trim(),
-        age: $("#age").val().trim(),
-        forcePoints: $("#force-points").val().trim()
+      var newDeveloper = {
+        name: $("#name").val(),
+        q1: $("#q1").val(),
+        q2: $("#q2").val(),
+        q3: $("#q3").val(),
+        q4: $("#q4").val(),
+        q5: $("#q5").val(),
+        q6: $("#q6").val(),
+        q7: $("#q7").val(),
+        q8: $("#q8").val(),
+        q9: $("#q9").val(),
+        q10: $("#q10").val()
       };
-      // Question: What does this code do??
-      $.post("/api/new", newCharacter)
+      // This takes newDeveloper and sends it to the server.
+      // The server will store the JSON object as the var newDev.
+      $.post("/api/new", newDeveloper)
       .done(function(data) {
         console.log(data);
-        alert("Adding character...");
+        alert("Finding a friend for you...");
       });
     });
   </script>

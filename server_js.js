@@ -15,26 +15,63 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Star Wars Characters (DATA)
+// Web dev friends (DATA)
 // =============================================================
-var characters = [{
-  routeName: "yoda",
-  name: "Yoda",
-  role: "Jedi Master",
-  age: 900,
-  forcePoints: 2000
+var webDevs = [{
+  routeName: "urkel",
+  name: "Steve Urkel",
+  q: 1,
+  q: 1,
+  q: 1,
+  q: 1,
+  q: 1,
+  q: 1,
+  q: 1,
+  q: 1,
+  q: 1,
+  q: 1
+  
 }, {
-  routeName: "darthmaul",
-  name: "Darth Maul",
-  role: "Sith Lord",
-  age: 200,
-  forcePoints: 1200
+  routeName: "newman",
+  name: "Alfred E. Newman",
+  q: 2,
+  q: 2,
+  q: 2,
+  q: 2,
+  q: 2,
+  q: 2,
+  q: 2,
+  q: 2,
+  q: 2,
+  q: 2
 }, {
-  routeName: "obiwankenobi",
-  name: "Obi Wan Kenobi",
-  role: "Jedi Master",
-  age: 55,
-  forcePoints: 1350
+  routeName: "grimley",
+  name: "Ed Grimley",
+  routeName: "Newman",
+  name: "Alfred E. Newman",
+  q: 3,
+  q: 3,
+  q: 3,
+  q: 3,
+  q: 3,
+  q: 3,
+  q: 3,
+  q: 3,
+  q: 3,
+  q: 3
+}, {
+  routeName: "herman",
+  name: "Pee-Wee Herman",
+  q: 4,
+  q: 4,
+  q: 4,
+  q: 4,
+  q: 4,
+  q: 4,
+  q: 4,
+  q: 4,
+  q: 4,
+  q: 4
 }];
 
 // Routes
@@ -51,36 +88,64 @@ app.get("/add", function(req, res) {
 
 // Get all characters
 app.get("/all", function(req, res) {
-  res.json(characters);
+  res.json(webDevs);
 });
 
 // Search for Specific Character (or all characters) - provides JSON
-app.get("/api/:characters?", function(req, res) {
-  var chosen = req.params.characters;
+app.get("/api/:webDevs?", function(req, res) {
+  var chosen = req.params.webDevs;
 
   if (chosen) {
     console.log(chosen);
 
-    for (var i = 0; i < characters.length; i++) {
-      if (chosen === characters[i].routeName) {
-        return res.json(characters[i]);
+    for (var i = 0; i < webDevs.length; i++) {
+      if (chosen === webDevs[i].routeName) {
+        return res.json(webDevs[i]);
       }
     }
     return res.json(false);
   }
-  return res.json(characters);
+  return res.json(webDevs);
 });
 
 // Create New Characters - takes in JSON input
 app.post("/api/new", function(req, res) {
-  var newcharacter = req.body;
-  newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+  var newDev = req.body;
+  newDev.routeName = newDev.name.replace(/\s+/g, "").toLowerCase();
+  console.log(newDev);
+  webDevs.push(newDev);
+  res.json(newDev);
 
-  console.log(newcharacter);
+  // Performs compatibility calculations:
+  function calculate() {
+    // Extracts q1-q10 from newDev and parseInt() to turn it to array of integers:
+    var newDevq1 = parseInt(newDev.q1);
+    var newDevq2 = parseInt(newDev.q2);
+    var newDevq3 = parseInt(newDev.q3);
+    var newDevq4 = parseInt(newDev.q4);
+    var newDevq5 = parseInt(newDev.q5);
+    var newDevq6 = parseInt(newDev.q6);
+    var newDevq7 = parseInt(newDev.q7);
+    var newDevq8 = parseInt(newDev.q8);
+    var newDevq9 = parseInt(newDev.q9);
+    var newDevq10 = parseInt(newDev.q10);
+    
+    var newDevArray = [];
+    newDevArray.push(newDevq1, newDevq2, newDevq3,newDevq4,newDevq5,newDevq6,newDevq7,newDevq8,newDevq9,newDevq10)
+    for (i = 0; i < newDevArray.length; i++) {
+      newDevArray[i]%
+    }
+    console.log(newDevArray);
+    
+  // Extracts q1-q10 from each item in webDevs and turns their string numbers into integers:
 
-  characters.push(newcharacter);
+  // Finds the difference between each value in the newDev array from the one in webDev array:
+  
+  // Adds up the differences:
 
-  res.json(newcharacter);
+  // Takes the webDev object that is the least different and sends it to the view.html page:
+  }
+  calculate(); 
 });
 
 // Starts the server to begin listening
